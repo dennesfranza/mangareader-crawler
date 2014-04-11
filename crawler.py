@@ -15,12 +15,6 @@ def main():
 	def sanitize(obj):
 		return re.sub(r'/', '.', obj)
 
-	def dwlinks(obj, loc):
-		path = os.path.join(os.getcwd(), loc)
-		os.mkdir(path)
-		os.chdir(path)
-		wget.download(obj)
-
 	for links in xfind.find_all('a'):
 		ref = links.get('href')
 		nlink = homepage + ref
@@ -40,8 +34,6 @@ def main():
 						_get = _find.get('src')
 						subprocess.call(['wget', '-nc', _get])
 				os.chdir(os.path.dirname(os.getcwd()))
-			else:
-				continue
 
 if __name__ == '__main__':
 	main()
